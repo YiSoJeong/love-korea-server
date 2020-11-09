@@ -30,17 +30,16 @@ const getAreaList = (BASE_URL, API_KEY) => async (req, res, next) => {
       const AreaList = response.data.response.body.items.item;
       result.data = AreaList.map((x) => {
         return {
-          addr1: x.addr1 || '',
-          addr2: x.addr2 || '',
+          addr1: x.addr1 || null,
+          addr2: x.addr2 || null,
           contentid: x.contentid,
-          firstimage: x.firstimage || '',
-          firstimage2: x.firstimage2 || '',
-          mapx: x.mapx || '',
-          mapy: x.mapy || '',
-          mlevel: x.mlevel || '',
-          readcount: x.readcount || '',
+          firstimage: x.firstimage || null,
+          firstimage2: x.firstimage2 || null,
+          mapx: Number(x.mapx) || null,
+          mapy: Number(x.mapy) || null,
+          readcount: x.readcount || null,
           title: x.title,
-          zipcode: x.zipcode || ''
+          zipcode: x.zipcode || null
         }
       });
       res.status(200).json(result);
@@ -59,18 +58,17 @@ const getLocationList = (BASE_URL, API_KEY) => async (req, res, next) => {
       const AreaList = response.data.response.body.items.item;
       result.data = AreaList.map((x) => {
         return {
-          addr1: x.addr1 || '',
-          addr2: x.addr2 || '',
+          addr1: x.addr1 || null,
+          addr2: x.addr2 || null,
           contentid: x.contentid,
           dist: x.dist,
-          firstimage: x.firstimage || '',
-          firstimage2: x.firstimage2 || '',
-          mapx: x.mapx || '',
-          mapy: x.mapy || '',
-          mlevel: x.mlevel || '',
-          readcount: x.readcount || '',
+          firstimage: x.firstimage || null,
+          firstimage2: x.firstimage2 || null,
+          mapx: Number(x.mapx) || null,
+          mapy: Number(x.mapy) || null,
+          readcount: x.readcount || null,
           title: x.title,
-          zipcode: x.zipcode || ''
+          zipcode: x.zipcode || null
         }
       });
       console.log(result)
@@ -90,20 +88,19 @@ const getDetailInfo = (BASE_URL, API_KEY) => async (req, res, next) => {
       const info = response.data.response.body.items.item;
       result.data = {
         contentid: info.contentid,
-        homepage: info.homepage || '',
-        tel: info.tel || '',
-        telname: info.telname || '',
+        homepage: info.homepage || null,
+        tel: info.tel || null,
+        telname: info.telname || null,
         title: info.title,
-        firstimage: info.firstimage || '',
-        firstimage2: info.firstimage2 || '',
-        areacode: info.areacode || '',
-        addr1: info.addr1 || '',
-        addr2: info.addr2 || '',
-        zipcode: info.zipcode || '',
-        mapx: info.mapx || '',
-        mapy: info.mapy || '',
-        mlevel: info.mlevel || '',
-        overview: info.overview || ''
+        firstimage: info.firstimage || null,
+        firstimage2: info.firstimage2 || null,
+        areacode: info.areacode || null,
+        addr1: info.addr1 || null,
+        addr2: info.addr2 || null,
+        zipcode: info.zipcode || null,
+        mapx: Number(info.mapx) || null,
+        mapy: Number(info.mapy) || null,
+        overview: info.overview || null
       };
       console.log(result);
       res.status(200).json(result);
