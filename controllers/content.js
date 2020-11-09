@@ -23,8 +23,8 @@ const getAreaCode = (BASE_URL, API_KEY) => async (req, res, next) => {
 
 const getAreaList = (BASE_URL, API_KEY) => async (req, res, next) => {
   const result = { data:[] };
-  const areaCode = req.params.id;
-  axios.get(`${BASE_URL}/areaBasedList?ServiceKey=${API_KEY}&MobileOS=AND&MobileApp=love-korea&_type=json&numOfRows=${AREALIST_NUM}&areaCode=${areaCode}`)
+  const { areacode } = req.params;
+  axios.get(`${BASE_URL}/areaBasedList?ServiceKey=${API_KEY}&MobileOS=AND&MobileApp=love-korea&_type=json&numOfRows=${AREALIST_NUM}&areaCode=${areacode}`)
   .then(
     (response) => {
       const AreaList = response.data.response.body.items.item;
