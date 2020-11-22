@@ -6,6 +6,13 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const koreanRouter = require('./routes/korean');
+const englishRouter = require('./routes/english');
+const japaneseRouter = require('./routes/japan');
+const chineseRouter = require('./routes/china');
+const germanyRouter = require('./routes/germany');
+const franceRouter = require('./routes/france');
+const spaneseRouter = require('./routes/spain');
+const russianRouter = require('./routes/russia');
 
 const app = express();
 
@@ -21,6 +28,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/ko', koreanRouter);
+app.use('/en', englishRouter);
+app.use('/jp', japaneseRouter);
+app.use('/ch', chineseRouter);
+app.use('/ge', germanyRouter);
+app.use('/fr', franceRouter);
+app.use('/sp', spaneseRouter);
+app.use('/ru', russianRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
