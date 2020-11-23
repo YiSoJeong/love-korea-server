@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getAreaCode, getAreaList, getLocationList, getDetailInfo } = require('../controllers/content');
+const {
+  getAreaCode,
+  getAreaList,
+  getLocationList,
+  getDetailInfo,
+} = require('../controllers/content');
 require('dotenv').config();
 
 const BASE_URL = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService';
