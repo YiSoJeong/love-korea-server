@@ -5,6 +5,7 @@ const {
   getAreaList,
   getLocationList,
   getDetailInfo,
+  getKeywordInfo,
 } = require('../controllers/content');
 require('dotenv').config();
 
@@ -15,5 +16,6 @@ router.get('/area-code', getAreaCode(BASE_URL, API_KEY));
 router.get('/area-based-list/:areacode', getAreaList(BASE_URL, API_KEY));
 router.get('/location-based-list', getLocationList(BASE_URL, API_KEY));
 router.get('/detail/:id', getDetailInfo(BASE_URL, API_KEY));
+router.get('/search-keyword', getKeywordInfo(BASE_URL, API_KEY));
 
 module.exports = router;
