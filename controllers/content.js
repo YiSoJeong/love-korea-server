@@ -77,11 +77,9 @@ const getLocationList = (BASE_URL, API_KEY) => async (req, res, next) => {
           zipcode: x.zipcode || null,
         };
       });
-      console.log(result);
       res.status(200).json(result);
     })
     .catch((error) => {
-      console.log(error);
       res
         .status(400)
         .json({ message: '요청 위치 주변의 관광지를 불러올 수 없습니다.' });
@@ -113,7 +111,6 @@ const getDetailInfo = (BASE_URL, API_KEY) => async (req, res, next) => {
         mapy: Number(info.mapy) || null,
         overview: info.overview || null,
       };
-      console.log(result);
       res.status(200).json(result);
     })
     .catch((error) => {
@@ -123,4 +120,43 @@ const getDetailInfo = (BASE_URL, API_KEY) => async (req, res, next) => {
     });
 };
 
-module.exports = { getAreaCode, getAreaList, getLocationList, getDetailInfo };
+const getKeywordInfo = (BASE_URL, API_KEY) => async (req, res, next) => {
+  const result = { data: [] };
+  const { keyword } = req.query;
+  axios
+    .get(
+      `${BASE_URL}/searchKeyword?ServiceKey=${API_KEY}&MobileOS=AND&MobileApp=love-korea&_type=json&numOfRows=${AREALIST_NUM}&keyword=${encodeURI(
+        keyword,
+      )}`,
+    )
+    .then((response) => {
+      const keywordList = response.data.response.body.items.item;
+      result.data = keywordList.map((x) => {
+        return {
+          contentid: x.contentid || null,
+          title: x.title || null,
+          firstimage: x.firstimage || null,
+          firstimage2: x.firstimage2 || null,
+          addr1: x.addr1 || null,
+          addr2: x.addr2 || null,
+          mapx: Number(x.mapx) || null,
+          mapy: Number(x.mapy) || null,
+          readcount: Number(x.readcount) || null,
+        };
+      });
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      res.status(400).json({
+        message: '해당 키워드에 대한 관광지 정보를 불러올 수 없습니다.',
+      });
+    });
+};
+
+module.exports = {
+  getAreaCode,
+  getAreaList,
+  getLocationList,
+  getDetailInfo,
+  getKeywordInfo,
+};
